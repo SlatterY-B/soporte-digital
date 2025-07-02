@@ -1,0 +1,39 @@
+<div *ngIf="role === 'ADMIN'">
+  <div class="overflow-x-auto rounded-2xl shadow-2xl border border-gray-200 bg-white">
+    <table class="min-w-full text-sm text-left">
+      <thead class="bg-gradient-to-r from-pink-500 to-orange-400 text-white">
+      <tr>
+        <th class="px-6 py-4 font-semibold uppercase tracking-wider">ID</th>
+        <th class="px-6 py-4 font-semibold uppercase tracking-wider">Full Name</th>
+        <th class="px-6 py-4 font-semibold uppercase tracking-wider">Email</th>
+        <th class="px-6 py-4 font-semibold uppercase tracking-wider">Role</th>
+      </tr>
+      </thead>
+
+      <tbody class="divide-y divide-gray-100">
+
+      <tr *ngFor="let user of users" (click)="selectedUser = user" [ngClass]="{ 'ring-2 ring-pink-400': selectedUser?.id === user.id }"
+          class="cursor-pointer transition duration-200 hover:bg-gradient-to-r hover:from-pink-50 hover:to-orange-50 hover:shadow-lg hover:scale-[1.01]">
+
+        <td class="px-6 py-4">{{ user.id }}</td>
+        <td class="px-6 py-4 font-semibold text-gray-800">{{ user.fullName }}</td>
+        <td class="px-6 py-4 text-gray-600">{{ user.email }}</td>
+        <td class="px-6 py-4">
+          <span [ngClass]="getRoleBadgeClass(user.role)" class="inline-flex px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 shadow">{{ user.role }}</span>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+    <p-paginator
+      [rows]="rows"
+      [totalRecords]="totalRecords"
+      [first]="currentPage * rows"
+      (onPageChange)="onPageChange($event)"
+      styleClass="rounded-full shadow-lg mt-4"/>
+
+  </div>
+
+</div>
+
+
