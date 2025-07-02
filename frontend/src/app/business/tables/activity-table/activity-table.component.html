@@ -1,0 +1,28 @@
+<div class="p-6">
+  <div class="overflow-x-auto rounded-xl shadow-lg">
+    <table class="min-w-full text-sm text-left text-gray-700 bg-white rounded-xl">
+      <thead>
+      <tr class="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs uppercase">
+        <th class="px-6 py-4 rounded-tl-xl">#</th>
+        <th class="px-6 py-4">Activity Date</th>
+        <th class="px-6 py-4">Description</th>
+        <th class="px-6 py-4">Hours Worked</th>
+        <th class="px-6 py-4 rounded-tr-xl">Assignment ID</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let activity of activities; let i = index" class="transition duration-200 ease-in-out hover:bg-purple-50 hover:shadow-md">
+        <td class="px-6 py-4 font-medium text-gray-900">{{ i + 1 }}</td>
+        <td class="px-6 py-4">{{ activity.activityDate | date:'yyyy-MM-dd HH:mm' }}</td>
+        <td class="px-6 py-4">{{ activity.activityDescription }}</td>
+        <td class="px-6 py-4">{{ activity.hoursWorked }}</td>
+        <td class="px-6 py-4">{{ activity.assignmentId }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="activities.length === 0" class="text-center text-sm text-gray-400 mt-4 italic">
+    No activities found.
+  </p>
+</div>

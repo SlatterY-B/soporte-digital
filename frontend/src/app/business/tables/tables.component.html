@@ -1,0 +1,62 @@
+<div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
+
+  <!-- ✅ TABS ORDENADOS: Users, Support Request, Assignment, Activity -->
+  <div class="mt-1 relative z-10 flex justify-center">
+    <div class="flex gap-3 bg-white/50 backdrop-blur-md border border-gray-200 shadow-xl rounded-full px-4 py-2 ring-1 ring-gray-200"
+         style="background-color: #FDF5E6;">
+
+      <!-- USERS -->
+      <button
+        *ngIf="role === 'ADMIN'"
+        (click)="activeTab = 'users'"
+        [ngClass]="activeTab === 'users'
+          ? 'bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-lg scale-105'
+          : 'text-gray-700 hover:bg-gray-100'"
+        class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out">
+        Users
+      </button>
+
+      <!-- SUPPORT REQUEST -->
+      <button
+        *ngIf="role === 'ADMIN' || role === 'AGENT' || role === 'CUSTOMER'"
+      (click)="activeTab = 'support'"
+      [ngClass]="activeTab === 'support'
+        ? 'bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-lg scale-105'
+        : 'text-gray-700 hover:bg-gray-100'"
+      class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out">
+      Support Request
+    </button>
+
+    <!-- ASSIGNMENT -->
+      <button
+        *ngIf="role === 'ADMIN' || role === 'AGENT'"
+        (click)="activeTab = 'assignment'"
+        [ngClass]="activeTab === 'assignment'
+          ? 'bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-lg scale-105'
+          : 'text-gray-700 hover:bg-gray-100'"
+        class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out">
+        Assignment
+      </button>
+
+      <!-- ACTIVITY -->
+      <button
+        *ngIf="role === 'ADMIN'"
+        (click)="activeTab = 'activity'"
+        [ngClass]="activeTab === 'activity'
+          ? 'bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-lg scale-105'
+          : 'text-gray-700 hover:bg-gray-100'"
+        class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out">
+        Activity
+      </button>
+    </div>
+  </div>
+
+  <!-- ✅ CONTENIDO: cada tabla es un subcomponente -->
+  <div class="mt-8 w-full max-w-4xl">
+    <app-users-table *ngIf="activeTab === 'users'"></app-users-table>
+    <app-support-request-table *ngIf="activeTab === 'support'"></app-support-request-table>
+    <app-assignment-table *ngIf="activeTab === 'assignment'"></app-assignment-table>
+    <app-activity-table *ngIf="activeTab === 'activity'"></app-activity-table>
+  </div>
+
+</div>
